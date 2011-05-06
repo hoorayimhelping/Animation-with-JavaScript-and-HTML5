@@ -1,0 +1,32 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+  <title>Particles!</title>
+  <script type="text/javascript" src="jquery-1.4.4.min.js"></script>
+  <script type="text/javascript" src="Particle.js"></script>
+  <script type="text/javascript" src="ParticleManager.js"></script>
+  <script type="text/javascript" src="Renderer.js"></script>
+
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <canvas id="container">Bummer, your browser doesn't support HTML5.</canvas>
+
+  <script type="text/javascript">
+    var context = document.getElementById('container').getContext('2d');
+    var renderer = new Renderer(context);
+    var particleManager = new ParticleManager(1);
+
+    $(document).ready(function() {
+      var $container = $('#container'); 
+      context.width = $container.width();
+      context.height = $container.height();
+
+      setInterval(function() {
+        particleManager.update();
+        particleManager.drawParticles(renderer.drawParticle);
+      }, 20);
+    });
+  </script>
+</body>
+</html>
