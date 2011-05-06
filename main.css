@@ -1,4 +1,12 @@
 body { background: #283; }
 
-.presentation { background: blue; float: left; width: 100%; }
-.slide { background: gray; float: left; -webkit-border-radius: 16px; -moz-border-radius: 16px; border-radius: 16px; }
+.header { background: salmon; height: 20px; width: 100%; }
+.presentation { width: 100%; }
+.slide { background: gray; height: 350px; margin: 0 auto; width: 675px;
+		-webkit-border-radius: 16px; -moz-border-radius: 16px; border-radius: 16px; }
+
+.nav_pager { position: absolute; right: 3000px; }
+.nav_controls { position: fixed; top: 0; z-index: 10; }
+.nav_controls { width: 100%; }
+.nav_controls .prev { left: 0; }
+.nav_controls .next { padding-right: 10px; position: absolute; right: 0; top: 0; }
