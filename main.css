@@ -2,19 +2,30 @@ body { background: #ADD8E6; }
 
 /* Layout */
 .bocker { margin-bottom: 10px; }
+.text-spacer { margin: 15px 0; }
+
 .presentation { height: 555px; text-align: center; width: 100%; }
-.slide { background: #D9CB9E; height: inherit; margin: 0 auto; text-align: left; width: 800px;
+.slide { background: #D9CB9E; height: inherit; margin: 0 auto; position: relative;
+	     text-align: left; width: 800px; z-index: 10;
 		-webkit-border-radius: 10px; -moz-border-radius: 10px; border-radius: 10px;
 		-webkit-box-shadow: 0px 0px 10px #000000; -moz-box-shadow: 0px 0px 10px #000000; box-shadow: 0px 0px 10px #000000;}
 
+/* Nav controls */
 .nav_pager { position: absolute; right: 3000px; }
-.nav_controls { height: inherit; position: absolute; top: 0; z-index: 10; width: 100%; }
-.nav_controls li { background: #000; height: 200px; position: absolute; top: 50%; width: 50px;
-				   filter: alpha(opacity=65); opacity: 0.65; }
-.nav_controls .prev { left: 0; }
-.nav_controls .next { right: 30px; }
-.nav_controls a { display: block; height: 100%; }
+.nav_controls { height: inherit; position: absolute; top: 0; z-index: 5; width: 100%; }
+.nav_controls li { height: 250px; position: absolute; top: 150.5px; width: 9%; }
+.nav_controls .prev { left: 5%; }
+.nav_controls .next { right: 5%; }
+.nav_controls a { background: #000; display: block; height: 100%; 
+				  filter: alpha(opacity=15); opacity: 0.15; }
+.nav_controls a:hover { filter: alpha(opacity=65); opacity: 0.65 }
+
 
 /* Font */
-.title { font-size: 65px; margin-bottom: 10px; text-align: center;
-	 	 text-shadow: 0 1px 1px #FFFFFF }
+.text-center { text-align: center; }
+.white-shadow { text-shadow: 0 1px 1px #FFFFFF; }
+
+h1,h2,h3,h4,h5,h6 { font-family: Tahoma, Geneva, Verdana, serif; }
+.title { font-size: 65px; }
+.sub-heading { font-size: 56px; }
+.sub-information { font-size: 38px; }

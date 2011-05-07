@@ -13,21 +13,27 @@
 <body>
 	<div class="presentation" id="presentation">
 		<br class="blocker">
-		<div class="slide" id="presentation-introduction">
-			<h2 class="title">Animation with JavaScript and HTML5</h2>
+		<div class="slide text-center" id="presentation-introduction">
+			<h2 class="title white-shadow">Animation with JavaScript and HTML5</h2>
+			<br class="text-spacer">
+			<br class="text-spacer">
+			<h3 class="sub-heading white-shadow">Bucky Schwarz</h3>
+			<br class="text-spacer">
+			<br class="text-spacer">
+			<h4 class="sub-information white-shadow">cf.Objective() May 2011</h4>
 		</div>
-		<div class="slide" id="something-else">
-			<h2>Slide 2</h2>
+		<div class="slide" id="about-bucky">
+			<h3>Slide 2</h3>
 		</div>
 	</div>
 <script type="text/javascript">
 	$(document).ready(function() {
 		$('#presentation').presentation({
-		  slide: '.slide', //Reference to each individual slide
-		  pagerClass: 'nav_pager', //Class to put on the unordered list that contains links to each slide
-		  prevNextClass: 'nav_controls', //Class to put on the unordered list that contains the previous and next links
-		  prevText: 'Previous', //Text for the Previous link
-		  nextText: 'Next', //Text for the Next link
+		  slide: '.slide',
+		  pagerClass: 'nav_pager',
+		  prevNextClass: 'nav_controls',
+		  prevText: 'Previous',
+		  nextText: 'Next',
 		  transition: 'slide' //Possible values are 'fade', 'show/hide', 'slide'
 		});
 	});
