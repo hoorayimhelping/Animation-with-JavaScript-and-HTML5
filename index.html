@@ -46,7 +46,7 @@
 				<li class="vertical-spacer-large">Created by Apple as a means of making dashboard widgets</li>
 				<li class="vertical-spacer-large">Supported by most modern browsers, excluding IE, of course</li>
 				<li class="vertical-spacer-large">
-<code><pre>
+<code class="embed"><pre>
 &lt;canvas id="context"&gt;
 	Oops, your browser can't display this
 &lt;/canvas&gt;
@@ -54,7 +54,37 @@
 				</li>
 			</ul>
 		</div>
-		<div class="slide center-text" id=""></div>
+		<div class="slide center-text" id="canvas-technical">
+			<h2 class="title white-shadow">Canvas Technical Details</h2>
+			<ul class="bullets dark-inset">
+				<li class="vertical-spacer-large">Canvas origin is at the top left of the coordinate system</li>
+				<li class="vertical-spacer-large">
+					<canvas class="embed" id="coordinate-system">
+					</canvas>
+					<script type="text/javascript">
+						$(document).ready(function() {
+							var canvas = getCavnasContext('coordinate-system');
+							canvas.width = 600;
+							canvas.height = 300;
+							canvas.strokeStyle = '#AAA';
+							for (var x = 0.5; x < canvas.width; x+= 10) {
+								canvas.moveTo(x, 0);
+								canvas.lineTo(x, canvas.height);
+							}
+							for (var y = 0.5; y < canvas.height; y+= 10) {
+								canvas.moveTo(0, y);
+								canvas.lineTo(canvas.width, y);
+							}
+							canvas.stroke();
+							canvas.fillRect(1, 1, 3, 3);
+							canvas.fillRect(canvas.width - 3, canvas.height - 3, 3, 3);
+							canvas.fillText('(0, 0)', 8, 10);
+							canvas.fillText('(' + canvas.width + ', ' + canvas.height + ')', canvas.width - 50, canvas.height - 10);
+						});
+					</script>
+				</li>
+			</ul>
+		</div>
 		<div class="slide center-text" id=""></div>
 		<div class="slide center-text" id=""></div>
 		<div class="slide center-text" id=""></div>
@@ -81,6 +111,13 @@
 		  transition: 'slide' //Possible values are 'fade', 'show/hide', 'slide'
 		});
 	});
+
+	var getCavnasContext = function(container) {
+		var canvas = document.getElementById(container);
+		canvas.height = 300;
+		canvas.width = 600;
+		return canvas.getContext('2d');
+	}
 </script>
 </body>
 </html>
