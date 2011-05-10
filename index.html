@@ -126,18 +126,22 @@
 			<ul class="bullets dark-inset">
 				<li class="vertical-spacer-large">
 <code class="embed"><pre>
-  var canvas = document.getElementById('container');
-  var context = canvas.getContext('2d');
+var canvas = document.getElementById('container');
+var context = canvas.getContext('2d');
 
-  context.fillStyle = '#CF0000';
-  var x = 10, y = 150;
-  setInterval(function() {
-	if (x >= context.width) {
-	  x = 10;
-	}
+context.fillStyle = '#CF0000';
+var x = 10, y = 150;
+setInterval(function() {
+  if (x >= context.width) {
+    x = 10;
+  }
     x += 5;
-    context.fillRect(x, y, 100, 100);
-  }, 40);
+    animate(x, y, context);
+}, 40);
+
+var animate = function(x, y, context) {
+  context.fillRect(x, y, 10, 10);
+}
 </pre></code>
 				</li>
 			</ul>
@@ -178,7 +182,29 @@
 				<li class="vertical-spacer-large">Each particle can be drawn using canvas function calls (it shouldn't be up to the particle to draw itself though - that is the responsibility of the canvas)</li>
 			</ul>
 		</div>
-		<div class="slide center-text" id=""></div>
+		<div class="slide center-text" id="particle-object">
+			<h2 class="title white-shadow">Particle object, part 1</h2>
+			<br class="vertical-spacer">
+<code class="bullets embed"><pre>
+var Particle = function() {
+  var self = this;
+
+  this.x = 50;
+  this.y = 50;
+  this.xSpeed = 1;
+  this.ySpeed = 1;
+
+  this.age = 0;
+  this.ageRate = 1;
+  this.ageLimit = 100;
+  this.alive = false;
+
+  this.fillStyle = '#0032FF';
+  this.radius = 1;
+ };
+</pre></code>
+			</div>
+		</div>
 		<div class="slide center-text" id=""></div>
 		<div class="slide center-text" id=""></div>
 		<div class="slide center-text" id=""></div>
