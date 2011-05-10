@@ -46,7 +46,7 @@
 				<li class="vertical-spacer-large">Provides a context to make drawing API calls using JavaScript</li>
 				<li class="vertical-spacer-large">Created by Apple as a means of making dashboard widgets</li>
 				<li class="vertical-spacer-large">Supported by most modern browsers, excluding IE, of course</li>
-				<li class="vertical-spacer-large">
+				<li class="vertical-spacer-large hide-list-style">
 <code class="embed"><pre>
 &lt;canvas id="context"&gt;
   Oops, your browser can't display this
@@ -59,7 +59,7 @@
 			<h2 class="title white-shadow">Canvas Technical Details</h2>
 			<ul class="content dark-inset">
 				<li class="vertical-spacer-large">Canvas origin is at the top left of the coordinate system</li>
-				<li class="vertical-spacer-large">
+				<li class="vertical-spacer-large hide-list-style">
 					<canvas class="embed" id="coordinate-system">
 					</canvas>
 					<script type="text/javascript">
@@ -89,12 +89,12 @@
 		<div class="slide center-text" id="canvas-drawing-code">
 			<h2 class="title white-shadow">Canvas Drawing Example</h2>
 			<ul class="content dark-inset">
-				<li class="vertical-spacer-large">
+				<li class="vertical-spacer-large hide-list-style">
 <code class="embed"><pre>
 &lt;canvas id="container"&gt;&lt;/canvas&gt;
 </pre></code>
 				</li>
-				<li class="vertical-spacer-large">
+				<li class="vertical-spacer-large hide-list-style">
 <code class="embed"><pre>
 &lt;script type="text/javascript"&gt;
   var canvas = document.getElementById('container');
@@ -109,23 +109,25 @@
 		</div>
 		<div class="slide center-text" id="canvas-drawing-example">
 			<h2 class="title white-shadow">Canvas Drawing Example (Continued)</h2>
-			<div class="content">
-				<canvas class="embed vertical-spacer-large" id="canvas-drawing-example-canvas"></canvas>
-				<script type="text/javascript">
-					$(document).ready(function() {
-						var context = getCanvasContext('canvas-drawing-example-canvas');
-						context.width = 600;
-						context.height = 300;
-						context.fillStyle = '#CF0000';
-						context.fillRect(10, 10, 100, 100);
-					});
-				</script>
-			</div>
+			<ul class="content dark-inset">
+				<li class="vertical-spacer-large hide-list-style">
+					<canvas class="embed vertical-spacer-large" id="canvas-drawing-example-canvas"></canvas>
+					<script type="text/javascript">
+						$(document).ready(function() {
+							var context = getCanvasContext('canvas-drawing-example-canvas');
+							context.width = 600;
+							context.height = 300;
+							context.fillStyle = '#CF0000';
+							context.fillRect(10, 10, 100, 100);
+						});
+						</script>
+				</li>
+			</ul>
 		</div>
 		<div class="slide center-text" id="canvas-animation-code">
 			<h2 class="title white-shadow">Canvas Animation Example</h2>
 			<ul class="content dark-inset">
-				<li class="vertical-spacer-large">
+				<li class="vertical-spacer-large hide-list-style">
 <code class="embed"><pre>
 var canvas = document.getElementById('container');
 var context = canvas.getContext('2d');
@@ -149,29 +151,31 @@ var animate = function(x, y, context) {
 		</div>
 		<div class="slide center-text" id="canvas-animation-example">
 			<h2 class="title white-shadow">Canvas Animation Example (continued)</h2>
-			<div class="content">
-				<canvas class="embed vertical-spacer-large" id="canvas-animation-example-canvas"></canvas>
-				<script type="text/javascript">
-					$(document).ready(function() {
-						var context = getCanvasContext('canvas-animation-example-canvas');
-						context.width = 600;
-						context.height = 300;
-						context.fillStyle = '#CF0000';
-						var x = 10, y = 150;
-						setInterval(function() {
-							context.clearRect(x, y, 10, 10);
-							if (x >= context.width) {
-						  		x = 20;
+			<ul class="content">
+				<li class="vertical-spacer-large hide-list-style">
+					<canvas class="embed vertical-spacer-large" id="canvas-animation-example-canvas"></canvas>
+					<script type="text/javascript">
+						$(document).ready(function() {
+							var context = getCanvasContext('canvas-animation-example-canvas');
+							context.width = 600;
+							context.height = 300;
+							context.fillStyle = '#CF0000';
+							var x = 10, y = 150;
+							setInterval(function() {
+								context.clearRect(x, y, 10, 10);
+								if (x >= context.width) {
+						  			x = 20;
+								}
+					    		x += 5;
+								animate(x, y, context);
+					  			}, 40);
+							});
+							var animate = function(x, y, context) {
+				    			context.fillRect(x, y, 10, 10);
 							}
-					    	x += 5;
-							animate(x, y, context);
-					  	}, 40);
-					});
-					var animate = function(x, y, context) {
-				    	context.fillRect(x, y, 10, 10);
-					}
-				</script>
-			</div>
+					</script>
+				</li>
+			</ul>
 		</div>
 		<div class="slide center-text" id="introducting-particles">
 			<h2 class="title white-shadow">Introducing Particles</h2>
@@ -185,7 +189,8 @@ var animate = function(x, y, context) {
 		</div>
 		<div class="slide center-text" id="particle-object">
 			<h2 class="title white-shadow">Particle object, part 1</h2>
-			<br class="vertical-spacer">
+			<ul class="content dark-inset">
+				<li class="vertical-spacer-large hide-list-style">
 <code class="content embed"><pre>
 var Particle = function() {
   var self = this;
