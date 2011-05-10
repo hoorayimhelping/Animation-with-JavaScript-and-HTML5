@@ -1,6 +1,7 @@
 /* Elements */
 body { background: #ADD8E6; }
 a { text-decoration: none; }
+pre { font-family: "Lucida Console", Monaco, monospace; font-size: 19px; text-shadow: none; }
 
 /* Layout */
 .bocker { margin-bottom: 10px; }
