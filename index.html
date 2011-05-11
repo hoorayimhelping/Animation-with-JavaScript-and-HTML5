@@ -138,8 +138,8 @@ setInterval(function() {
   if (x >= context.width) {
     x = 10;
   }
-    x += 5;
-    animate(x, y, context);
+  x += 5; y += (Math.sin(x) * 10);
+  animate(x, y, context);
 }, 40);
 
 var animate = function(x, y, context) {
@@ -162,11 +162,11 @@ var animate = function(x, y, context) {
 							context.fillStyle = '#CF0000';
 							var x = 10, y = 150;
 							setInterval(function() {
-								context.clearRect(x, y, 10, 10);
+								context.clearRect(0, 0, context.width, context.height);
 								if (x >= context.width) {
 						  			x = 20;
 								}
-					    		x += 5;
+					    		x += 5; y += (Math.sin(x) * 10);
 								animate(x, y, context);
 					  			}, 40);
 							});
