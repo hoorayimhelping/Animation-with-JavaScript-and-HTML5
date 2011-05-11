@@ -9,21 +9,19 @@ var ParticleManager = function() {
     }
   }
 
-  this.initializeParticles = function() {
-    for (i = 0; i < this.particleCount; i++) {
-      var newLength = this.particles.push(new Particle());
-    }
-  };
+  for (i = 0; i < this.particleCount; i++) {
+    var newLength = this.particles.push(new Particle());
+  }
+};
 
-  this.update = function() {
-    for (i = 0; i < this.particleCount; i++ ) {
-      this.particles[i].update();
-    }
-  };
+ParticleManager.prototype.update = function() {
+  for (i = 0; i < this.particleCount; i++ ) {
+    this.particles[i].update();
+  }
+};
 
-  this.drawParticles = function(fn) {
-    for (i = 0; i < this.particleCount; i++) {
-      fn(this.particles[i]);
-    }
+ParticleManager.prototype.drawParticles = function(fn) {
+  for (i = 0; i < this.particleCount; i++) {
+    fn(this.particles[i]);
   }
 };
