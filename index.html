@@ -187,9 +187,9 @@ var animate = function(x, y, context) {
 				<li class="vertical-spacer-large">Each particle can be drawn using canvas function calls (it shouldn't be up to the particle to draw itself though - a particle shouldn't know about the existence of canvas)</li>
 			</ul>
 		</div>
-		<div class="slide center-text" id="particle-object-1">
-			<h2 class="title white-shadow">Particle object, part 1</h2>
-			<ul class="content dark-inset vertical-spacer-large" id="particle-code">
+		<div class="slide center-text" id="particle-object">
+			<h2 class="title white-shadow">Particle object</h2>
+			<ul class="content dark-inset vertical-spacer-large longcode">
 				<li class="hide-list-style">
 <code class="content embed"><pre>
 var Particle = function() {
@@ -224,10 +224,53 @@ var Particle = function() {
 				</li>
 			</ul>
 		</div>
-		<div class="slide center-text" id="">
-			
+		<div class="slide center-text" id="introducting-particle-manager">
+			<h2 class="title white-shadow">Introducing the Particle Manager</h2>
+			<br class="vertical-spacer">
+			<h4 class="sub-information white-shadow">A particle manager manages collections of particles</h4>
+			<ul class="content dark-inset">
+				<li class="vertical-spacer-large">The particle manager handles the creation and initialization of a collection of particles</li>
+				<li class="vertical-spacer-large">The particle manager acts as a mediator between a particle and the canvas</li>
+			</ul>
 		</div>
-		<div class="slide center-text" id=""></div>
+		<div class="slide center-text" id="particle-manager-object">
+			<h2 class="title white-shadow">ParticleManager object</h2>
+			<ul class="content dark-inset vertical-spacer-large longcode">
+				<li class="hide-list-style">
+<code class="content embed"><pre>
+var ParticleManager = function() {
+  var self = this;
+  this.particles = [];
+  this.particleCount = 200;
+
+  if (arguments.length === 1) {
+    if (typeof arguments[0] === 'number' &&
+        arguments[0] > 0) {
+      this.particleCount = arguments[0];
+    }
+  }
+
+  this.initializeParticles = function() {
+    for (i = 0; i < this.particleCount; i++) {
+      this.particles[i] = new Particle();
+      this.particles[i].alive = true;
+    }
+  };
+
+  this.update = function() {
+    for (i = 0; i < this.particleCount; i++ ) {
+      this.particles[i].update();
+    }
+  };
+
+  this.drawParticles = function(fn) {
+    for (i = 0; i < this.particleCount; i++) {
+      fn(this.particles[i]);
+    }
+  }
+};
+</pre></code>
+		</div>
 		<div class="slide center-text" id=""></div>
 		<div class="slide center-text" id=""></div>
 		<div class="slide center-text" id=""></div>
