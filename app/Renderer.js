@@ -6,7 +6,7 @@ var Renderer = function(context) {
 		if (!particle.alive) {
 			return;
 		}
-		c.clearRect(0, 0, context.width, context.height);
+//		c.clearRect(particle.previousX, particle.previousY, 10, 10);
 		c.beginPath();
 			c.arc(particle.x, particle.y, particle.radius, 0, Math.PI*2, true);
 		c.closePath();

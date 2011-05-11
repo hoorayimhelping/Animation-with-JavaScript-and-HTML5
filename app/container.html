@@ -21,14 +21,14 @@
       context.height = $container.height();
 
       var renderer = new Renderer(context);
-      var particleManager = new ParticleManager(10);
+      var particleManager = new ParticleManager(12);
 
 	  var mainLoop = function(m, r) {
 		m.update();
 		m.drawParticles(r.drawParticle);
 	  };
 	
-	  setInterval(function() {
+interval=	  setInterval(function() {
         mainLoop(particleManager, renderer);
       }, 40);
     });
