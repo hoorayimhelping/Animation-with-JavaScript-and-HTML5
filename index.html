@@ -211,7 +211,7 @@ var Particle = function() {
 
 Particle.prototype.update = function() {
   if (this.alive) {
-    if (this.age <= this.ageRate) {
+    if (this.age <= this.ageLimit) {
       this.x += this.xSpeed;
       this.y += this.ySpeed;
       this.age += this.ageRate;
@@ -219,7 +219,7 @@ Particle.prototype.update = function() {
       this.alive = false;
     }
   }
-}
+};
 </pre></code>
 				</li>
 			</ul>
@@ -252,18 +252,19 @@ var ParticleManager = function() {
 
   for (i = 0; i < this.particleCount; i++) {
     this.particles.push(new Particle());
+    // we will be adding code here later
   }
-};
 
 ParticleManager.prototype.update = function() {
-  for (i = 0; i < this.particleCount; i++ ) {
-    this.particles[i].update();
-  }
-};
+    for (i = 0; i < this.particleCount; i++ ) {
+      this.particles[i].update();
+    }
+  };
 
 ParticleManager.prototype.drawParticles = function(fn) {
-  for (i = 0; i < this.particleCount; i++) {
-    fn(this.particles[i]);
+    for (i = 0; i < this.particleCount; i++) {
+      fn(this.particles[i]);
+    }
   }
 };
 </pre></code>

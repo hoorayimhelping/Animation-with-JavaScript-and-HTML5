@@ -9,7 +9,7 @@ var Particle = function() {
   this.age = 0;
   this.ageRate = 1;
   this.ageLimit = 100;
-  this.alive = false;
+  this.alive = true;
 
   this.fillStyle = '#0032FF';
   this.radius = 1;
@@ -17,7 +17,7 @@ var Particle = function() {
 
 Particle.prototype.update = function() {
   if (this.alive) {
-    if (this.age <= this.ageRate) {
+    if (this.age <= this.ageLimit) {
       this.x += this.xSpeed;
       this.y += this.ySpeed;
       this.age += this.ageRate;
@@ -25,4 +25,4 @@ Particle.prototype.update = function() {
       this.alive = false;
     }
   }
-}
+};

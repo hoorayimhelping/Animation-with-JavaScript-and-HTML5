@@ -22,10 +22,14 @@
 
       var renderer = new Renderer(context);
       var particleManager = new ParticleManager(10);
-	  particleManager.initializeParticles();
 
-      setInterval(function() {
-		
+	  var x = function(m, r) {
+		m.update();
+		m.drawParticles(r.drawParticle)
+	};
+
+timer =      setInterval(function() {
+		x(particleManager, renderer);
       }, 40);
     });
   </script>

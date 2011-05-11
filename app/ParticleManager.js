@@ -10,18 +10,20 @@ var ParticleManager = function() {
   }
 
   for (i = 0; i < this.particleCount; i++) {
-    var newLength = this.particles.push(new Particle());
+    this.particles.push(new Particle());
+	this.particles[i].x = (i + 2) * 10;
+	this.particles[i].y = (this.particles[i].x / 2) + 10;
   }
-};
 
 ParticleManager.prototype.update = function() {
-  for (i = 0; i < this.particleCount; i++ ) {
-    this.particles[i].update();
-  }
-};
+    for (i = 0; i < this.particleCount; i++ ) {
+      this.particles[i].update();
+    }
+  };
 
 ParticleManager.prototype.drawParticles = function(fn) {
-  for (i = 0; i < this.particleCount; i++) {
-    fn(this.particles[i]);
+    for (i = 0; i < this.particleCount; i++) {
+      fn(this.particles[i]);
+    }
   }
 };
