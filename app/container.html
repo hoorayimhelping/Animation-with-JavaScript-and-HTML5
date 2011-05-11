@@ -23,13 +23,13 @@
       var renderer = new Renderer(context);
       var particleManager = new ParticleManager(10);
 
-	  var x = function(m, r) {
+	  var mainLoop = function(m, r) {
 		m.update();
-		m.drawParticles(r.drawParticle)
-	};
-
-timer =      setInterval(function() {
-		x(particleManager, renderer);
+		m.drawParticles(r.drawParticle);
+	  };
+	
+	  setInterval(function() {
+        mainLoop(particleManager, renderer);
       }, 40);
     });
   </script>

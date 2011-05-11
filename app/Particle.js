@@ -12,7 +12,7 @@ var Particle = function() {
   this.alive = true;
 
   this.fillStyle = '#0032FF';
-  this.radius = 1;
+  this.radius = 2;
 };
 
 Particle.prototype.update = function() {

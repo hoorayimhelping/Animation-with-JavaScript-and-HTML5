@@ -133,12 +133,12 @@ var canvas = document.getElementById('container');
 var context = canvas.getContext('2d');
 
 context.fillStyle = '#CF0000';
-var x = 10, y = 150;
+var x = 10;
 setInterval(function() {
   if (x >= context.width) {
     x = 10;
   }
-  x += 5; y += (Math.sin(x) * 10);
+  x += 5; y = (Math.sin(x) * 10) + 150;
   animate(x, y, context);
 }, 40);
 
@@ -160,13 +160,13 @@ var animate = function(x, y, context) {
 							context.width = 600;
 							context.height = 300;
 							context.fillStyle = '#CF0000';
-							var x = 10, y = 150;
+							var x = 10;
 							setInterval(function() {
 								context.clearRect(0, 0, context.width, context.height);
 								if (x >= context.width) {
 						  			x = 20;
 								}
-					    		x += 5; y += (Math.sin(x) * 10);
+					    		x += 5; y = (Math.sin(x) * 10) + 150;
 								animate(x, y, context);
 					  			}, 40);
 							});
