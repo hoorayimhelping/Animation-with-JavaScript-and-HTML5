@@ -11,8 +11,8 @@ var ParticleManager = function() {
 
   this.initializeParticles = function() {
     for (i = 0; i < this.particleCount; i++) {
-      this.particles[i] = new Particle();
-      this.particles[i].alive = true;
+      var newLength = this.particles.push(new Particle());
+      this.particles[newLength - 1].alive = true;
     }
   };
 

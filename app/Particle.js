@@ -13,16 +13,16 @@ var Particle = function() {
 
   this.fillStyle = '#0032FF';
   this.radius = 1;
+};
 
-  this.update = function() {
-    if (this.alive) {
-      if (this.age <= this.ageRate) {
-        this.x += this.xSpeed;
-        this.y += this.ySpeed;
-        this.age += this.ageRate;
-      } else {
-        this.alive = false;
-      }
+Particle.prototype.update = function() {
+  if (this.alive) {
+    if (this.age <= this.ageRate) {
+      this.x += this.xSpeed;
+      this.y += this.ySpeed;
+      this.age += this.ageRate;
+    } else {
+      this.alive = false;
     }
   }
-};
+}
