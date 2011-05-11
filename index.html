@@ -252,7 +252,16 @@ var ParticleManager = function() {
 
   for (i = 0; i < this.particleCount; i++) {
     this.particles.push(new Particle());
-    // we will be adding code here later
+    this.particles[i].x = 0;
+    this.particles[i].y = 0;
+
+    var angle = (90 / this.particleCount) * (i);
+    var x = Math.abs(Math.cos(angle * (Math.PI/180)));
+    var y = Math.abs(Math.cos(angle * (Math.PI/180)));
+
+    this.particles[i].angle = angle;
+    this.particles[i].xSpeed = x;
+    this.particles[i].ySpeed = y;
   }
 
 ParticleManager.prototype.update = function() {
