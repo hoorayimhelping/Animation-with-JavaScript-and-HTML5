@@ -20,8 +20,6 @@ var Particle = function() {
 Particle.prototype.update = function() {
   if (this.alive) {
     if (this.age <= this.ageLimit) {
-      this.previousX = this.x;
-      this.previousY = this.y;
       this.x += this.xSpeed;
       this.y += this.ySpeed;
       this.age += this.ageRate;
