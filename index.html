@@ -344,11 +344,51 @@ var Renderer = function(context) {
 		</div>
 		<div class="slide center-text" id="container-explanation">
 			<h2 class="title white-shadow">HTML Container</h2>
-			<br class="vertical-spacer">
-			<h4 class="sub-information white-shadow">We need a place to draw these particles</h4>
-			<ul class="content dark-inset">
-				<li class="vertical-spacer-large"></li>
-				<li class="vertical-spacer-large"></li>
+			<ul class="content dark-inset vertical-spacer-large">
+				<li class="hide-list-style">
+<code class="embed scrollcode widecode"><pre>
+&lt;body&gt;
+  &lt;canvas id="container" width="400px" height="400px"&gt;Bummer, your browser doesn't support HTML5.&lt;/canvas&gt;
+
+  &lt;script type="text/javascript"&gt;
+    $(document).ready(function() {
+      var $container = $('#container');
+      var interval = '';
+
+      var context = document.getElementById('container').getContext('2d');
+      context.width = $container.width();
+      context.height = $container.height();
+
+      var renderer = new Renderer(context);
+      var particleManager = new ParticleManager(200);
+
+      // this ole boy does the actual rendering calls
+      var mainLoop = function(m, r) {
+        m.update();
+        r.clear();
+        m.drawParticles(r.drawParticle);
+      };
+
+      $container.bind('click', function(event) {
+        // we have to take the location of the container that was clicked into account.
+        // see Ben Nadel's post here: http://www.bennadel.com/blog/1871-Translating-Global-jQuery-Event-Coordinates-To-A-Local-Context.htm
+        var point = { x: event.pageX - $container.offset().left, y: event.pageY - $container.offset().top };
+        particleManager.initialize(point);
+
+        // if we don't clear the interval, we'll have very strange results
+        if (interval !== '') {
+          clearInterval(interval);
+        }
+
+        interval = setInterval(function() {
+           mainLoop(particleManager, renderer);
+        }, 40);
+      });
+    });
+  &lt;/script&gt;
+&lt;/body&gt;
+</pre></code>
+				</li>
 			</ul>
 		</div>
 		<div class="slide center-text" id=""></div>

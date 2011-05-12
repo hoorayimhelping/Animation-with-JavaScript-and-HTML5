@@ -24,27 +24,28 @@
       var renderer = new Renderer(context);
       var particleManager = new ParticleManager(200);
 
-	  var mainLoop = function(m, r) {
-		m.update();
+      // this ole boy does the actual rendering calls
+      var mainLoop = function(m, r) {
+        m.update();
         r.clear();
-		m.drawParticles(r.drawParticle);
-	  };
+        m.drawParticles(r.drawParticle);
+      };
 
-	  $container.bind('click', function(event) {
-	      // we have to take the location of the container that was clicked into account.
-	      // see Ben Nadel's post here: http://www.bennadel.com/blog/1871-Translating-Global-jQuery-Event-Coordinates-To-A-Local-Context.htm
-	      var point = { x: event.pageX - $container.offset().left, y: event.pageY - $container.offset().left};
-		  particleManager.initialize(point);
+      $container.bind('click', function(event) {
+        // we have to take the location of the container that was clicked into account.
+        // see Ben Nadel's post here: http://www.bennadel.com/blog/1871-Translating-Global-jQuery-Event-Coordinates-To-A-Local-Context.htm
+        var point = { x: event.pageX - $container.offset().left, y: event.pageY - $container.offset().top };
+        particleManager.initialize(point);
 
-		  // if we don't clear the interval, we'll have very strange results
-		  if (interval !== '') {
-			clearInterval(interval);
-		  }
+        // if we don't clear the interval, we'll have very strange results
+        if (interval !== '') {
+          clearInterval(interval);
+        }
 
-		  interval = setInterval(function() {
-	      	mainLoop(particleManager, renderer);
-	      }, 40);
-	  });
+        interval = setInterval(function() {
+           mainLoop(particleManager, renderer);
+        }, 40);
+      });
     });
   </script>
 </body>
