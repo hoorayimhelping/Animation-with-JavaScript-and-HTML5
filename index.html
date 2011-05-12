@@ -128,13 +128,14 @@
 			<h2 class="title white-shadow">Canvas Animation Example</h2>
 			<ul class="content dark-inset">
 				<li class="vertical-spacer-large hide-list-style">
-<code class="embed"><pre>
+<code class="embed" id="canvas-animation-code-code"><pre>
 var canvas = document.getElementById('container');
 var context = canvas.getContext('2d');
 
 context.fillStyle = '#CF0000';
 var x = 10;
 setInterval(function() {
+  // clearRect is very important - ask me why
   context.clearRect(0, 0, context.width, context.height);
   if (x >= context.width) {
     x = 20;
