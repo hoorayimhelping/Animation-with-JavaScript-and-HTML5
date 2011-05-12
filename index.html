@@ -139,7 +139,7 @@ var context = canvas.getContext('2d');
 context.fillStyle = '#CF0000';
 var x = 10;
 setInterval(function() {
-  // clearRect is very important
+  // clearRect is very important for animation
   context.clearRect(0, 0, context.width, context.height);
   if (x >= context.width) {
     x = 20;
