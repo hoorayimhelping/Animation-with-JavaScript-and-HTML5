@@ -45,9 +45,7 @@ pre { font-family: "Lucida Console", Monaco, monospace; font-size: 19px; text-sh
 .nav_controls .prev { left: 5%; }
 .nav_controls .next { right: 5%; }
 .nav_controls a { display: block; height: 100%; 
-				  filter: alpha(opacity=15); opacity: 0.15;
-				  /*border-color: transparent transparent #000 transparent; border-style: solid;
-				  border-width: 0 105px 105px; */}
+				  filter: alpha(opacity=15); opacity: 0.15; }
 .nav_controls a img { height: auto; }
 .nav_controls a:hover { filter: alpha(opacity=65); opacity: 0.65 }
 

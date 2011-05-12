@@ -135,8 +135,9 @@ var context = canvas.getContext('2d');
 context.fillStyle = '#CF0000';
 var x = 10;
 setInterval(function() {
+  context.clearRect(0, 0, context.width, context.height);
   if (x >= context.width) {
-    x = 10;
+    x = 20;
   }
   x += 5; y = (Math.sin(x) * 10) + 150;
   animate(x, y, context);
