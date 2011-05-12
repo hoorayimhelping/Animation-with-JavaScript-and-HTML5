@@ -293,8 +293,10 @@ ParticleManager.prototype.drawParticles = function(fn) {
   }
 };
 </pre></code>
+				</li>
+			</ul>
 		</div>
-		<div class="slide center-text" id="introducing-particle-renderer">
+		<div class="slide center-text" id="introducing-renderer">
 			<h2 class="title white-shadow">Introducing the Renderer</h2>
 			<br class="vertical-spacer">
 			<h4 class="sub-information white-shadow">A Renderer handles the actual drawing of our simulation objects</h4>
@@ -304,8 +306,50 @@ ParticleManager.prototype.drawParticles = function(fn) {
 				<li class="vertical-spacer-large">A Renderer is responsible for translating the objects in our simulated space to the actual canvas</li>
 			</ul>
 		</div>
-		<div class="slide center-text" id=""></div>
-		<div class="slide center-text" id=""></div>
+		<div class="slide center-text" id="renderer-object">
+			<h2 class="title white-shadow">Renderer Object</h2>
+			<ul class="content dark-inset vertical-spacer-large">
+				<li class="hide-list-style">
+<code class="embed scrollcode widecode"><pre>
+var Renderer = function(context) {
+  var c = context;
+
+  this.clear = function() {
+    c.clearRect(0, 0, c.width, c.height);
+  };
+
+  this.drawParticle = function(particle) {
+    if (!particle.alive) {
+      return;
+    }
+    c.beginPath();
+      c.arc(particle.x, particle.y, particle.radius, 0, Math.PI*2, true);
+    c.closePath();
+
+    if (particle.hasOwnProperty('fillStyle') && particle.fillStyle !== '') {
+      c.fillStyle = particle.fillStyle;
+      c.fill();
+    }
+
+    if (particle.hasOwnProperty('strokeStyle') && particle.strokeStyle !== '') {
+      c.strokeStyle = particle.strokeStyle;
+      c.stroke();
+    }
+  };
+};
+</pre></code>
+				</li>
+			</ul>
+		</div>
+		<div class="slide center-text" id="container-explanation">
+			<h2 class="title white-shadow">HTML Container</h2>
+			<br class="vertical-spacer">
+			<h4 class="sub-information white-shadow">We need a place to draw these particles</h4>
+			<ul class="content dark-inset">
+				<li class="vertical-spacer-large"></li>
+				<li class="vertical-spacer-large"></li>
+			</ul>
+		</div>
 		<div class="slide center-text" id=""></div>
 		<div class="slide center-text" id=""></div>
 		<div class="slide center-text" id=""></div>
