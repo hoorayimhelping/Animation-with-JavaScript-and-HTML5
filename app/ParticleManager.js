@@ -1,5 +1,4 @@
 var ParticleManager = function() {
-  var self = this;
   this.particles = [];
 
   if (arguments.length === 1) {

@@ -199,8 +199,6 @@ var animate = function(x, y, context) {
 				<li class="hide-list-style">
 <code class="content embed"><pre>
 var Particle = function() {
-  var self = this;
-
   this.x = 0;
   this.y = 0;
   this.xSpeed = 0;
@@ -247,15 +245,15 @@ Particle.prototype.update = function() {
 				<li class="hide-list-style">
 <code class="content embed"><pre>
 var ParticleManager = function() {
-  var self = this;
   this.particles = [];
-  this.particleCount = 200;
 
   if (arguments.length === 1) {
     if (typeof arguments[0] === 'number' &&
         arguments[0] > 0) {
       this.particleCount = arguments[0];
     }
+  } else {
+    this.particleCount = 200;
   }
 
   for (i = 0; i < this.particleCount; i++) {
