@@ -31,7 +31,10 @@
 	  };
 
 	  $container.bind('click', function(event) {
-		  particleManager.initialize({x: event.layerX, y: event.layerY});
+	      // we have to take the location of the container that was clicked into account.
+	      // see Ben Nadel's post here: http://www.bennadel.com/blog/1871-Translating-Global-jQuery-Event-Coordinates-To-A-Local-Context.htm
+	      var point = { x: event.pageX - $container.offset().left, y: event.pageY - $container.offset().left};
+		  particleManager.initialize(point);
 
 		  // if we don't clear the interval, we'll have very strange results
 		  if (interval !== '') {

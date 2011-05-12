@@ -10,11 +10,11 @@ var ParticleManager = function() {
     this.particleCount = 200;
   }
 
-ParticleManager.prototype.initialize = function(point) {
+ParticleManager.prototype.initialize = function(origin) {
 	for (i = 0; i < this.particleCount; i++) {
 	    this.particles.push(new Particle());
-		this.particles[i].x = point.x;
-		this.particles[i].y = point.y;
+		this.particles[i].x = origin.x;
+		this.particles[i].y = origin.y;
 		this.particles[i].age = 0;
 
 		this.particles[i].angle = (360 / this.particleCount) * (i);
