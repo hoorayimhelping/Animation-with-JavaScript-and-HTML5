@@ -18,8 +18,8 @@ ParticleManager.prototype.initialize = function(origin) {
     this.particles[i].age = 0;
 
     this.particles[i].angle = (360 / this.particleCount) * (i);
-    this.particles[i].xSpeed = Math.abs(Math.cos(this.particles[i].angle * (Math.PI/180)));
-    this.particles[i].ySpeed = Math.abs(Math.sin(this.particles[i].angle * (Math.PI/180)));
+    this.particles[i].xSpeed = Math.abs(Math.cos(this.particles[i].angle * (Math.PI/180))) * 3;
+    this.particles[i].ySpeed = Math.abs(Math.sin(this.particles[i].angle * (Math.PI/180))) * 3;
 
     if (this.particles[i].angle >= 0 && this.particles[i].angle < 90) {
 

@@ -266,8 +266,8 @@ ParticleManager.prototype.initialize = function(origin) {
     this.particles[i].age = 0;
 
     this.particles[i].angle = (360 / this.particleCount) * (i);
-    this.particles[i].xSpeed = Math.abs(Math.cos(this.particles[i].angle * (Math.PI/180)));
-    this.particles[i].ySpeed = Math.abs(Math.sin(this.particles[i].angle * (Math.PI/180)));
+    this.particles[i].xSpeed = Math.abs(Math.cos(this.particles[i].angle * (Math.PI/180))) * 3;
+    this.particles[i].ySpeed = Math.abs(Math.sin(this.particles[i].angle * (Math.PI/180))) * 3;
 
     if (this.particles[i].angle >= 0 && this.particles[i].angle < 90) {
 
@@ -391,7 +391,34 @@ var Renderer = function(context) {
 				</li>
 			</ul>
 		</div>
-		<div class="slide center-text" id=""></div>
+		<div class="slide center-text" id="basic-explosion-example">
+			<h2 class="title white-shadow">Basic Particle Explosion Example</h2>
+			<ul class="content">
+				<li class="vertical-spacer-large hide-list-style">
+					<canvas class="embed vertical-spacer-large" id="canvas-animation-example-canvas"></canvas>
+					<script type="text/javascript">
+						$(document).ready(function() {
+							var context = getCanvasContext('canvas-animation-example-canvas');
+							context.width = 600;
+							context.height = 300;
+							context.fillStyle = '#CF0000';
+							var x = 10;
+							setInterval(function() {
+								context.clearRect(0, 0, context.width, context.height);
+								if (x >= context.width) {
+						  			x = 20;
+								}
+					    		x += 5; y = (Math.sin(x) * 10) + 150;
+								animate(x, y, context);
+					  			}, 40);
+							});
+							var animate = function(x, y, context) {
+				    			context.fillRect(x, y, 10, 10);
+							}
+					</script>
+				</li>
+			</ul>
+		</div>
 		<div class="slide center-text" id=""></div>
 		<div class="slide center-text" id=""></div>
 	</div>
