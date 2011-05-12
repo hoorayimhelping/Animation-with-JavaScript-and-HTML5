@@ -44,8 +44,10 @@ pre { font-family: "Lucida Console", Monaco, monospace; font-size: 19px; text-sh
 .nav_controls li { height: 250px; position: absolute; top: 150.5px; width: 9%; }
 .nav_controls .prev { left: 5%; }
 .nav_controls .next { right: 5%; }
-.nav_controls a { background: #000; display: block; height: 100%; 
+.nav_controls a { display: block; height: 100%; 
 				  filter: alpha(opacity=15); opacity: 0.15; }
+.nav_controls a img { display: none; }
+.nav_controls a img:hover { display: block; opacity: 0.65; }
 .nav_controls a:hover { filter: alpha(opacity=65); opacity: 0.65 }
 
 

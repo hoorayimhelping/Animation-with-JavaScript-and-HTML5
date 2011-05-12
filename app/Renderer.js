@@ -2,11 +2,14 @@ var Renderer = function(context) {
 	var	self = this,
 		c = context;
 
+    this.clear = function() {
+      c.clearRect(0, 0, c.width, c.height);
+    }
+
 	this.drawParticle = function(particle) {
 		if (!particle.alive) {
 			return;
 		}
-//		c.clearRect(particle.previousX, particle.previousY, 10, 10);
 		c.beginPath();
 			c.arc(particle.x, particle.y, particle.radius, 0, Math.PI*2, true);
 		c.closePath();
