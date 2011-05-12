@@ -56,17 +56,20 @@
 			</ul>
 		</div>
 		<div class="slide center-text" id="canvas-technical">
-			<h2 class="title white-shadow">Canvas Gotcha</h2>
+			<h2 class="title white-shadow">Canvas Gotchas</h2>
 			<ul class="content dark-inset">
+				<li class="vertical-spacer-large">Explicitly set the width and height of the canvas element, otherwise you might see strange stretching of your canvas</li>
 				<li class="vertical-spacer-large">Canvas origin is at the top left of the coordinate system</li>
 				<li class="vertical-spacer-large hide-list-style">
-					<canvas class="embed" id="coordinate-system">
-					</canvas>
+					<div class="embed" id="coordinate-system-container">
+						<canvas id="coordinate-system" width="600" height="200">
+						</canvas>
+					</div>
 					<script type="text/javascript">
 						$(document).ready(function() {
 							var context = getCanvasContext('coordinate-system');
 							context.width = 600;
-							context.height = 300;
+							context.height = 200;
 							context.strokeStyle = '#AAA';
 							for (var x = 0.5; x < context.width; x+= 10) {
 								context.moveTo(x, 0);
