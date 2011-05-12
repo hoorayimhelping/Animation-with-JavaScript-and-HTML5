@@ -132,7 +132,7 @@
 			<h2 class="title white-shadow">Canvas Animation Example</h2>
 			<ul class="content dark-inset">
 				<li class="vertical-spacer-large hide-list-style">
-<code class="embed" id="canvas-animation-code-code"><pre>
+<code class="embed widecode"><pre>
 var canvas = document.getElementById('container');
 var context = canvas.getContext('2d');
 
@@ -241,9 +241,9 @@ Particle.prototype.update = function() {
 		</div>
 		<div class="slide center-text" id="particle-manager-object">
 			<h2 class="title white-shadow">ParticleManager object</h2>
-			<ul class="content dark-inset vertical-spacer-large longcode">
+			<ul class="content dark-inset vertical-spacer-large">
 				<li class="hide-list-style">
-<code class="content embed"><pre>
+<code class="embed scrollcode widecode"><pre>
 var ParticleManager = function() {
   this.particles = [];
 
@@ -255,31 +255,41 @@ var ParticleManager = function() {
   } else {
     this.particleCount = 200;
   }
+};
 
+ParticleManager.prototype.initialize = function(origin) {
   for (i = 0; i < this.particleCount; i++) {
     this.particles.push(new Particle());
-    this.particles[i].x = 0;
-    this.particles[i].y = 0;
+    this.particles[i].x = origin.x;
+    this.particles[i].y = origin.y;
+    this.particles[i].age = 0;
 
-    var angle = (90 / this.particleCount) * (i);
-    var x = Math.abs(Math.cos(angle * (Math.PI/180)));
-    var y = Math.abs(Math.cos(angle * (Math.PI/180)));
+    this.particles[i].angle = (360 / this.particleCount) * (i);
+    this.particles[i].xSpeed = Math.abs(Math.cos(this.particles[i].angle * (Math.PI/180)));
+    this.particles[i].ySpeed = Math.abs(Math.sin(this.particles[i].angle * (Math.PI/180)));
 
-    this.particles[i].angle = angle;
-    this.particles[i].xSpeed = x;
-    this.particles[i].ySpeed = y;
+    if (this.particles[i].angle >= 0 && this.particles[i].angle < 90) {
+
+    } else if (this.particles[i].angle >= 90 && this.particles[i].angle < 180) {
+      this.particles[i].ySpeed = -this.particles[i].ySpeed;
+    } else if (this.particles[i].angle >= 180 && this.particles[i].angle < 270) {
+      this.particles[i].ySpeed = -this.particles[i].ySpeed;
+      this.particles[i].xSpeed = -this.particles[i].xSpeed;
+    } else if (this.particles[i].angle >= 270 && this.particles[i].angle < 360) {
+      this.particles[i].xSpeed = -this.particles[i].xSpeed;
+    }
   }
+};
 
 ParticleManager.prototype.update = function() {
-    for (i = 0; i < this.particleCount; i++ ) {
-      this.particles[i].update();
-    }
-  };
+  for (i = 0; i < this.particleCount; i++ ) {
+    this.particles[i].update();
+  }
+};
 
 ParticleManager.prototype.drawParticles = function(fn) {
-    for (i = 0; i < this.particleCount; i++) {
-      fn(this.particles[i]);
-    }
+  for (i = 0; i < this.particleCount; i++) {
+    fn(this.particles[i]);
   }
 };
 </pre></code>

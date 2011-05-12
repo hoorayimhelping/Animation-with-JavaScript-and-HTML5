@@ -36,9 +36,11 @@ pre { font-family: "Lucida Console", Monaco, monospace; font-size: 19px; text-sh
 	     -webkit-border-radius: 10px; -moz-border-radius: 10px; border-radius: 10px;
 	     -webkit-box-shadow: inset 0px 0px 1px #000; -moz-box-shadow: inset 0px 0px 1px #000; box-shadow: inset 0px 0px 1px #000; }
 .longcode { height: 400px; overflow: scroll; overflow-x: hidden; }
+.widecode { margin-left: -8%; width: 110%; }
+.scrollcode { height: 400px; overflow: scroll; }
+
 #coordinate-system { height: 300px; width: 600px; }
 #coordinate-system-container { height: 200px; }
-#canvas-animation-code-code { margin-left: -8%; width: 110%; }
 
 /* Nav controls */
 .nav_pager { position: absolute; right: 3000px; }
