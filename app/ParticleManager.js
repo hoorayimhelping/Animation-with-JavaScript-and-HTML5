@@ -15,6 +15,7 @@ ParticleManager.prototype.initialize = function(point) {
 	    this.particles.push(new Particle());
 		this.particles[i].x = point.x;
 		this.particles[i].y = point.y;
+		this.particles[i].age = 0;
 
 		this.particles[i].angle = (360 / this.particleCount) * (i);
 		this.particles[i].xSpeed = Math.abs(Math.cos(this.particles[i].angle * (Math.PI/180)));

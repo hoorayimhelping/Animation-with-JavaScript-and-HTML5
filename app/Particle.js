@@ -1,12 +1,10 @@
 var Particle = function() {
   var self = this;
 
-  this.x = 50;
-  this.y = 50;
-  this.previousX = this.x;
-  this.previousY = this.y;
-  this.xSpeed = 1.0;
-  this.ySpeed = 1.0;
+  this.x = 0;
+  this.y = 0;
+  this.xSpeed = 0;
+  this.ySpeed = 0;
 
   this.angle = 0.0;
 

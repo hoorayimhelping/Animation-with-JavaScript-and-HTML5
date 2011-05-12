@@ -10,11 +10,12 @@
   <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-  <canvas id="container">Bummer, your browser doesn't support HTML5.</canvas>
+  <canvas id="container" width="400px" height="400px">Bummer, your browser doesn't support HTML5.</canvas>
 
   <script type="text/javascript">
     $(document).ready(function() {
-      var $container = $('#container'); 
+      var $container = $('#container');
+      var interval = '';
 
       var context = document.getElementById('container').getContext('2d');
       context.width = $container.width();
@@ -29,9 +30,18 @@
 		m.drawParticles(r.drawParticle);
 	  };
 
-      setInterval(function() {
-        mainLoop(particleManager, renderer);
-      }, 40);
+	  $container.bind('click', function(event) {
+		  particleManager.initialize({x: event.layerX, y: event.layerY});
+
+		  // if we don't clear the interval, we'll have very strange results
+		  if (interval !== '') {
+			clearInterval(interval);
+		  }
+
+		  interval = setInterval(function() {
+	      	mainLoop(particleManager, renderer);
+	      }, 40);
+	  });
     });
   </script>
 </body>
