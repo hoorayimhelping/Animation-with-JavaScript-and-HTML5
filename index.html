@@ -272,9 +272,7 @@ ParticleManager.prototype.initialize = function(origin) {
     this.particles[i].xSpeed = Math.abs(Math.cos(this.particles[i].angle * (Math.PI/180))) * 3;
     this.particles[i].ySpeed = Math.abs(Math.sin(this.particles[i].angle * (Math.PI/180))) * 3;
 
-    if (this.particles[i].angle >= 0 && this.particles[i].angle < 90) {
-
-    } else if (this.particles[i].angle >= 90 && this.particles[i].angle < 180) {
+    if (this.particles[i].angle >= 90 && this.particles[i].angle < 180) {
       this.particles[i].ySpeed = -this.particles[i].ySpeed;
     } else if (this.particles[i].angle >= 180 && this.particles[i].angle < 270) {
       this.particles[i].ySpeed = -this.particles[i].ySpeed;
@@ -426,9 +424,7 @@ var Renderer = function(context) {
 							    this.particles[i].xSpeed = Math.abs(Math.cos(this.particles[i].angle * (Math.PI/180))) * 3;
 							    this.particles[i].ySpeed = Math.abs(Math.sin(this.particles[i].angle * (Math.PI/180))) * 3;
 
-							    if (this.particles[i].angle >= 0 && this.particles[i].angle < 90) {
-
-							    } else if (this.particles[i].angle >= 90 && this.particles[i].angle < 180) {
+							    if (this.particles[i].angle >= 90 && this.particles[i].angle < 180) {
 							      this.particles[i].ySpeed = -this.particles[i].ySpeed;
 							    } else if (this.particles[i].angle >= 180 && this.particles[i].angle < 270) {
 							      this.particles[i].ySpeed = -this.particles[i].ySpeed;
@@ -463,8 +459,14 @@ var Renderer = function(context) {
 				</li>
 			</ul>
 		</div>
-		<div class="slide center-text" id="">
-			
+		<div class="slide center-text" id="gravity-explosion-changes">
+			<h2 class="title white-shadow">Let's Add Some Gravity to the Mix</h2>
+			<ul class="content dark-inset vertical-spacer-large">
+				<li class="hide-list-style">
+<code class="embed scrollcode widecode"><pre>
+</pre></code>
+				</li>
+			</ul>
 		</div>
 		<div class="slide center-text" id=""></div>
 	</div>
