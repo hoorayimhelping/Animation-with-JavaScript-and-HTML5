@@ -459,16 +459,93 @@ var Renderer = function(context) {
 				</li>
 			</ul>
 		</div>
-		<div class="slide center-text" id="gravity-explosion-changes">
-			<h2 class="title white-shadow">Let's Add Some Gravity to the Mix</h2>
-			<ul class="content dark-inset vertical-spacer-large">
-				<li class="hide-list-style">
-<code class="embed scrollcode widecode"><pre>
+		<div class="slide center-text" id="advanced-explosion-changes-1">
+			<h2 class="title white-shadow">Let's Make it Interesting</h2>
+			<ul class="content dark-inset">
+				<li class="vertical-spacer-large">First, let's add some new variables to ParticleManager</li>
+				<li class="vertical-spacer-large hide-list-style">
+<code class="embed"><pre>
+var ParticleManager = function() {
+  this.gravity = .3;
+  this.bounds = { x: 0, y: 0 };
+  this.friction = .4;
+  // ...
+</pre></code>
+				</li>
+				<li class="vertical-spacer-large">Then let's change how a Particle's speed is calculated</li>
+				<li class="vertical-spacer-large hide-list-style">
+<code class="embed"><pre>
+this.particles[i].xSpeed = (Math.random() * 20) - 10;
+this.particles[i].ySpeed = (Math.random() * 20) - 10;
 </pre></code>
 				</li>
 			</ul>
 		</div>
-		<div class="slide center-text" id=""></div>
+		<div class="slide center-text" id="advanced-explosion-changes-2">
+			<h2 class="title white-shadow">More Changes</h2>
+			<ul class="content dark-inset">
+				<li class="vertical-spacer-large">Then, let's change how ParticleManager updates Particles</li>
+				<li class="vertical-spacer-large hide-list-style">
+<code class="embed scrollcode" id="more-changes-code"><pre>
+ParticleManager.prototype.update = function() {
+  for (var i = 0; i < this.particleCount; i++ ) {
+    if (this.particles[i].x >= this.bounds.x || this.particles[i].x <= 0) {
+      this.particles[i].xSpeed = -this.particles[i].xSpeed * this.friction;
+    }
+    if (this.particles[i].y >= this.bounds.y || this.particles[i].y <= 0) {
+      this.particles[i].verticalBounces++;
+      this.particles[i].ySpeed = -this.particles[i].ySpeed * this.friction;
+    }
+    this.particles[i].update();
+    this.particles[i].ySpeed -= this.gravity;
+  }
+};
+</pre></code>
+				</li>
+			</ul>
+		</div>
+		<div class="slide center-text" id="advanced-explosion-example">
+			<h2 class="title white-shadow">Advanced Particle Explosion Example</h2>
+			<ul class="content">
+				<li class="vertical-spacer-large hide-list-style">
+					<canvas class="embed vertical-spacer-large example" id="advanced-explosion-example-canvas"></canvas>
+					<script type="text/javascript">
+						$(document).ready(function() {
+							var context = getCanvasContext('advanced-explosion-example-canvas');
+							var $container = $('#advanced-explosion-example-canvas');
+							context.width = 600;
+							context.height = 300;
+
+							var interval = '';
+						    var renderer = new Renderer(context);
+						    var particleManager = new ParticleManager(200);
+							particleManager.bounds = { x: context.width, y: context.height };
+
+						    var mainLoop = function(m, r) {
+						        m.update();
+						        r.clear();
+						        m.drawParticles(r.drawParticle);
+						    };
+
+						    $container.bind('click', function(event) {
+						        var point = { x: event.pageX - $container.offset().left, 
+										 	  y: event.pageY - $container.offset().top };
+
+						        particleManager.initialize(point);
+
+						        if (interval !== '') {
+						          clearInterval(interval);
+						        }
+
+						        interval = setInterval(function() {
+						           mainLoop(particleManager, renderer);
+						        }, 40);
+						      });
+						});
+					</script>
+				</li>
+			</ul>
+		</div>
 	</div>
 	<div class="footer light-inset">
 		<div class="left">

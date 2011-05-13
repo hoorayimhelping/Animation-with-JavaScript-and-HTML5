@@ -40,13 +40,13 @@ ParticleManager.prototype.initialize = function(origin) {
 
 ParticleManager.prototype.update = function() {
   for (var i = 0; i < this.particleCount; i++ ) {
-	if (this.particles[i].x >= this.bounds.x || this.particles[i].x <= 0) {
-		this.particles[i].xSpeed = -this.particles[i].xSpeed * this.friction;
-	}
-	if (this.particles[i].y >= this.bounds.y || this.particles[i].y <= 0) {
-		this.particles[i].verticalBounces++;
-		this.particles[i].ySpeed = -this.particles[i].ySpeed * this.friction;
-	}
+    if (this.particles[i].x >= this.bounds.x || this.particles[i].x <= 0) {
+      this.particles[i].xSpeed = -this.particles[i].xSpeed * this.friction;
+    }
+    if (this.particles[i].y >= this.bounds.y || this.particles[i].y <= 0) {
+      this.particles[i].verticalBounces++;
+      this.particles[i].ySpeed = -this.particles[i].ySpeed * this.friction;
+    }
     this.particles[i].update();
     this.particles[i].ySpeed -= this.gravity;
   }
