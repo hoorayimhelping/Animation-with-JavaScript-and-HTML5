@@ -23,6 +23,7 @@
 
       var renderer = new Renderer(context);
       var particleManager = new ParticleManager(200);
+	  particleManager.bounds = { x: context.width, y: context.height };
 
       // this ole boy does the actual rendering calls
       var mainLoop = function(m, r) {

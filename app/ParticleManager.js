@@ -1,6 +1,8 @@
 var ParticleManager = function() {
   this.particles = [];
-  this.gravitySpeed = .3;
+  this.gravity = .3;
+  this.bounds = { x: 0, y: 0 };
+  this.friction = .6;
 
   if (arguments.length === 1) {
     if (typeof arguments[0] === 'number' && arguments[0] > 0) {
@@ -18,15 +20,14 @@ ParticleManager.prototype.initialize = function(origin) {
     this.particles[i].x = origin.x;
     this.particles[i].y = origin.y;
     this.particles[i].age = 0;
+    this.particles[i].verticalBounces = 0;
 
     this.particles[i].angle = (360 / this.particleCount) * i;
 
-    this.particles[i].xSpeed = (Math.random() * 40) - 5;
-    this.particles[i].ySpeed = (Math.random() * 40) - 5;
+    this.particles[i].xSpeed = (Math.random() * 20) - 10;
+    this.particles[i].ySpeed = (Math.random() * 20) - 10;
 
-    if (this.particles[i].angle >= 0 && this.particles[i].angle < 90) {
-
-    } else if (this.particles[i].angle >= 90 && this.particles[i].angle < 180) {
+    if (this.particles[i].angle >= 90 && this.particles[i].angle < 180) {
       this.particles[i].ySpeed = -this.particles[i].ySpeed;
     } else if (this.particles[i].angle >= 180 && this.particles[i].angle < 270) {
       this.particles[i].ySpeed = -this.particles[i].ySpeed;
@@ -39,8 +40,15 @@ ParticleManager.prototype.initialize = function(origin) {
 
 ParticleManager.prototype.update = function() {
   for (var i = 0; i < this.particleCount; i++ ) {
+	if (this.particles[i].x >= this.bounds.x || this.particles[i].x <= 0) {
+		this.particles[i].xSpeed = -this.particles[i].xSpeed * this.friction;
+	}
+	if (this.particles[i].y >= this.bounds.y || this.particles[i].y <= 0) {
+		this.particles[i].verticalBounces++;
+		this.particles[i].ySpeed = -this.particles[i].ySpeed * this.friction;
+	}
     this.particles[i].update();
-    this.particles[i].ySpeed -= this.gravitySpeed;
+    this.particles[i].ySpeed -= this.gravity;
   }
 };
 
