@@ -2,7 +2,7 @@ var ParticleManager = function() {
   this.particles = [];
   this.gravity = .3;
   this.bounds = { x: 0, y: 0 };
-  this.friction = .6;
+  this.friction = .4;
 
   if (arguments.length === 1) {
     if (typeof arguments[0] === 'number' && arguments[0] > 0) {
