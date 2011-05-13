@@ -1,5 +1,6 @@
 var ParticleManager = function() {
   this.particles = [];
+  this.gravitySpeed = .3;
 
   if (arguments.length === 1) {
     if (typeof arguments[0] === 'number' && arguments[0] > 0) {
@@ -11,13 +12,14 @@ var ParticleManager = function() {
 };
 
 ParticleManager.prototype.initialize = function(origin) {
+  this.particles = [];
   for (i = 0; i < this.particleCount; i++) {
     this.particles.push(new Particle());
     this.particles[i].x = origin.x;
     this.particles[i].y = origin.y;
     this.particles[i].age = 0;
 
-    this.particles[i].angle = (360 / this.particleCount) * (i);
+    this.particles[i].angle = (360 / this.particleCount) * i;
     this.particles[i].xSpeed = Math.abs(Math.cos(this.particles[i].angle * (Math.PI/180))) * 3;
     this.particles[i].ySpeed = Math.abs(Math.sin(this.particles[i].angle * (Math.PI/180))) * 3;
 
@@ -37,6 +39,7 @@ ParticleManager.prototype.initialize = function(origin) {
 ParticleManager.prototype.update = function() {
   for (var i = 0; i < this.particleCount; i++ ) {
     this.particles[i].update();
+    this.particles[i].ySpeed -= this.gravitySpeed;
   }
 };
 

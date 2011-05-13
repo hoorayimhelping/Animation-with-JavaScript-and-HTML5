@@ -39,6 +39,8 @@ pre { font-family: "Lucida Console", Monaco, monospace; font-size: 19px; text-sh
 .widecode { margin-left: -8%; width: 110%; }
 .scrollcode { height: 400px; overflow: scroll; }
 
+canvas.example { margin-right: auto; margin-left: auto; padding: 0; }
+
 #coordinate-system { height: 300px; width: 600px; }
 #coordinate-system-container { height: 200px; }
 

@@ -5,6 +5,9 @@
 	<script type="text/javascript" src="js/jQuery.js"></script>
 	<script type="text/javascript" src="js/easing.js"></script>
 	<script type="text/javascript" src="js/jQuery-Presentation/scripts/jquery.presentation-full.js"></script>
+	<script type="text/javascript" src="app/Particle.js"></script>
+	<script type="text/javascript" src="app/ParticleManager.js"></script>
+	<script type="text/javascript" src="app/Renderer.js"></script>
 	<link rel="stylesheet" href="reset.css" media="screen">
 	<link rel="stylesheet" href="main.css" media="screen">
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
@@ -265,7 +268,7 @@ ParticleManager.prototype.initialize = function(origin) {
     this.particles[i].y = origin.y;
     this.particles[i].age = 0;
 
-    this.particles[i].angle = (360 / this.particleCount) * (i);
+    this.particles[i].angle = (360 / this.particleCount) * i;
     this.particles[i].xSpeed = Math.abs(Math.cos(this.particles[i].angle * (Math.PI/180))) * 3;
     this.particles[i].ySpeed = Math.abs(Math.sin(this.particles[i].angle * (Math.PI/180))) * 3;
 
@@ -395,31 +398,74 @@ var Renderer = function(context) {
 			<h2 class="title white-shadow">Basic Particle Explosion Example</h2>
 			<ul class="content">
 				<li class="vertical-spacer-large hide-list-style">
-					<canvas class="embed vertical-spacer-large" id="canvas-animation-example-canvas"></canvas>
+					<canvas class="embed vertical-spacer-large example" id="basic-explosion-example-canvas"></canvas>
 					<script type="text/javascript">
 						$(document).ready(function() {
-							var context = getCanvasContext('canvas-animation-example-canvas');
+							var context = getCanvasContext('basic-explosion-example-canvas');
+							var $container = $('#basic-explosion-example-canvas');
 							context.width = 600;
 							context.height = 300;
-							context.fillStyle = '#CF0000';
-							var x = 10;
-							setInterval(function() {
-								context.clearRect(0, 0, context.width, context.height);
-								if (x >= context.width) {
-						  			x = 20;
-								}
-					    		x += 5; y = (Math.sin(x) * 10) + 150;
-								animate(x, y, context);
-					  			}, 40);
-							});
-							var animate = function(x, y, context) {
-				    			context.fillRect(x, y, 10, 10);
-							}
+
+							var interval = '';
+						    var renderer = new Renderer(context);
+						    var noGravParticleManager = new ParticleManager(200);
+							noGravParticleManager.update = function() {
+							  for (var i = 0; i < this.particleCount; i++ ) {
+							    this.particles[i].update();
+							  }
+							};
+							noGravParticleManager.initialize = function(origin) {
+							  this.particles = [];
+							  for (i = 0; i < this.particleCount; i++) {
+							    this.particles.push(new Particle());
+							    this.particles[i].x = origin.x;
+							    this.particles[i].y = origin.y;
+							    this.particles[i].age = 0;
+
+							    this.particles[i].angle = (360 / this.particleCount) * i;
+							    this.particles[i].xSpeed = Math.abs(Math.cos(this.particles[i].angle * (Math.PI/180))) * 3;
+							    this.particles[i].ySpeed = Math.abs(Math.sin(this.particles[i].angle * (Math.PI/180))) * 3;
+
+							    if (this.particles[i].angle >= 0 && this.particles[i].angle < 90) {
+
+							    } else if (this.particles[i].angle >= 90 && this.particles[i].angle < 180) {
+							      this.particles[i].ySpeed = -this.particles[i].ySpeed;
+							    } else if (this.particles[i].angle >= 180 && this.particles[i].angle < 270) {
+							      this.particles[i].ySpeed = -this.particles[i].ySpeed;
+							      this.particles[i].xSpeed = -this.particles[i].xSpeed;
+							    } else if (this.particles[i].angle >= 270 && this.particles[i].angle < 360) {
+							      this.particles[i].xSpeed = -this.particles[i].xSpeed;
+							    }
+							  }
+							};
+
+						    var mainLoop = function(m, r) {
+						        m.update();
+						        r.clear();
+						        m.drawParticles(r.drawParticle);
+						    };
+
+						    $container.bind('click', function(event) {
+						        var point = { x: event.pageX - $container.offset().left, y: event.pageY - $container.offset().top };
+
+						        noGravParticleManager.initialize(point);
+
+						        if (interval !== '') {
+						          clearInterval(interval);
+						        }
+
+						        interval = setInterval(function() {
+						           mainLoop(noGravParticleManager, renderer);
+						        }, 40);
+						      });
+						});
 					</script>
 				</li>
 			</ul>
 		</div>
-		<div class="slide center-text" id=""></div>
+		<div class="slide center-text" id="">
+			
+		</div>
 		<div class="slide center-text" id=""></div>
 	</div>
 	<div class="footer light-inset">
