@@ -41,6 +41,7 @@
 				<li class="vertical-spacer-large">An intermediate understanding of JavaScript</li>
 				<li class="vertical-spacer-large">Workable Geometry and Trigonometry skills</li>
 				<li class="vertical-spacer-large">An HTML5 and CSS3 capable browser (I recommend webkit-based browsers)</li>
+				<li class="vertical-spacer-large"><strong>Note:</strong> this presentation is mainly theoretical</li>
 			</ul>
 		</div>
 		<div class="slide center-text" id="about-canvas">
@@ -97,7 +98,7 @@
 			<ul class="content dark-inset">
 				<li class="vertical-spacer-large hide-list-style">
 <code class="embed"><pre>
-&lt;canvas id="container width="400px" height="400px"&gt;
+&lt;canvas id="container" width="400px" height="400px"&gt;
 &lt;/canvas&gt;
 </pre></code>
 				</li>
@@ -147,7 +148,8 @@ setInterval(function() {
   if (x >= context.width) {
     x = 20;
   }
-  x += 5; y = (Math.sin(x) * 10) + 150;
+  x += 5;
+  y = (Math.sin(x) * 10) + 150;
   animate(x, y, context);
 }, 40);
 
@@ -262,6 +264,7 @@ var ParticleManager = function() {
 };
 
 ParticleManager.prototype.initialize = function(origin) {
+  this.particles = [];
   for (i = 0; i < this.particleCount; i++) {
     this.particles.push(new Particle());
     this.particles[i].x = origin.x;
@@ -303,7 +306,7 @@ ParticleManager.prototype.drawParticles = function(fn) {
 			<br class="vertical-spacer">
 			<h4 class="sub-information white-shadow">A Renderer handles the actual drawing of our simulation objects</h4>
 			<ul class="content dark-inset">
-				<li class="vertical-spacer-large">A Renderer handles abstracting the details of actual rendering grunt work away from the application</li>
+				<li class="vertical-spacer-large">A Renderer abstracts the details of the rendering grunt work away from the application</li>
 				<li class="vertical-spacer-large">A Renderer is the only object that is aware of the canvas</li>
 				<li class="vertical-spacer-large">A Renderer is responsible for translating the objects in our simulated space to the actual canvas</li>
 			</ul>
