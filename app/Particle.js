@@ -22,7 +22,7 @@ Particle.prototype.update = function() {
       this.y -= this.ySpeed;
       this.age += this.ageRate;
     } else {
-      this.alive = false;
+      this.die();
     }
   }
 };
