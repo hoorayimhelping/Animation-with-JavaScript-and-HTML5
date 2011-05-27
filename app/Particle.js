@@ -8,7 +8,7 @@ var Particle = function() {
 
   this.age = 0;
   this.ageRate = 1;
-  this.ageLimit = 1000;
+  this.ageLimit = 700;
   this.alive = true;
 
   this.fillStyle = '#0032FF';
@@ -26,3 +26,12 @@ Particle.prototype.update = function() {
     }
   }
 };
+
+Particle.prototype.die = function() {
+	this.alive = false;
+};
+
+Particle.prototype.spawn = function() {
+	this.alive = true;
+	this.age = 0;
+}
