@@ -34,4 +34,4 @@ Particle.prototype.die = function() {
 Particle.prototype.spawn = function() {
 	this.alive = true;
 	this.age = 0;
-}
+};
