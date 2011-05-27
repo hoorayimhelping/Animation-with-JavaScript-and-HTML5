@@ -1,11 +1,7 @@
 var Particle = function() {
-  this.x = 0;
-  this.y = 0;
-  this.xSpeed = 0;
-  this.ySpeed = 0;
-
-  this.xStartSpeed = 0;
-  this.yStartSpeed = 0;
+  this.position = { x: 0, y: 0 };
+  this.velocity = { x: 0, y: 0 };
+  this.startVelocity = { x: 0, y: 0 };
 
   this.angle = 0.0;
 
@@ -21,8 +17,8 @@ var Particle = function() {
 Particle.prototype.update = function() {
   if (this.alive) {
     if (this.age <= this.ageLimit) {
-      this.x -= this.xSpeed;
-      this.y -= this.ySpeed;
+      this.position.x -= this.velocity.x;
+      this.position.y -= this.velocity.y;
       this.age += this.ageRate;
     } else {
       this.die();

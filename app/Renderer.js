@@ -10,7 +10,7 @@ var Renderer = function(context) {
       return;
     }
     c.beginPath();
-      c.arc(particle.x, particle.y, particle.radius, 0, Math.PI*2, true);
+      c.arc(particle.position.x, particle.position.y, particle.radius, 0, Math.PI*2, true);
     c.closePath();
 
     if (particle.hasOwnProperty('fillStyle') && particle.fillStyle !== '') {

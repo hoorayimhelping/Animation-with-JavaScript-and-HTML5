@@ -3,26 +3,42 @@
 <head>
   <title>Particles!</title>
   <script type="text/javascript" src="jquery-1.4.4.min.js"></script>
+  <script type="text/javascript" src="jquery-ui/js/jquery-ui-1.8.13.custom.min.js"></script>
   <script type="text/javascript" src="Particle.js"></script>
   <script type="text/javascript" src="ParticleManager.js"></script>
+  <script type="text/javascript" src="FountainManager.js"></script>
   <script type="text/javascript" src="Renderer.js"></script>
 
   <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="jquery-ui/css/ui-lightness/jquery-ui-1.8.13.custom.css">
 </head>
 <body>
   <canvas id="container" width="400px" height="400px">Bummer, your browser doesn't support HTML5.</canvas>
+  <div id="slider"></div>
 
   <script type="text/javascript">
     $(document).ready(function() {
       var $container = $('#container');
       var interval = '';
 
+      $('#slider').slider({
+				orientation: "vertical",
+				range: "min",
+				min: 0,
+				max: 100,
+				value: 60,
+				slide: function( event, ui ) {
+					//$( "#amount" ).val( ui.value );
+				}
+			});
+
       var context = document.getElementById('container').getContext('2d');
       context.width = $container.width();
       context.height = $container.height();
 
       var renderer = new Renderer(context);
-      var particleManager = new ParticleManager(200);
+      var particleManager = new FountainManager();
+	  particleManager.particleCount = 700;
 	  particleManager.bounds = { x: context.width, y: context.height };
 
       // this ole boy does the actual rendering calls
@@ -32,11 +48,18 @@
         m.drawParticles(r.drawParticle);
       };
 
+	/*particleManager.initialize({x: $container.width()/2 - $container.offset().left, y: $container.height() - $container.offset().top - 3});
+
+	  interval = setInterval(function() {
+         mainLoop(particleManager, renderer);
+      }, 40);*/
       $container.bind('click', function(event) {
         // we have to take the location of the container that was clicked into account.
         // see Ben Nadel's post here: http://www.bennadel.com/blog/1871-Translating-Global-jQuery-Event-Coordinates-To-A-Local-Context.htm
         var point = { x: event.pageX - $container.offset().left, y: event.pageY - $container.offset().top };
-        particleManager.initialize(point);
+
+		particleManager.origin = {x: $container.width()/2 - $container.offset().left, y: $container.height() - $container.offset().top - 10}; 
+        particleManager.initialize();
 
         // if we don't clear the interval, we'll have very strange results
         if (interval !== '') {
@@ -44,8 +67,8 @@
         }
 
         interval = setInterval(function() {
-           mainLoop(particleManager, renderer);
-        }, 40);
+	         mainLoop(particleManager, renderer);
+	      }, 40);
       });
     });
   </script>
