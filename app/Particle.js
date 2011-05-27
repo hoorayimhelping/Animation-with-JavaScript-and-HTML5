@@ -4,6 +4,9 @@ var Particle = function() {
   this.xSpeed = 0;
   this.ySpeed = 0;
 
+  this.xStartSpeed = 0;
+  this.yStartSpeed = 0;
+
   this.angle = 0.0;
 
   this.age = 0;
